@@ -36,17 +36,10 @@ const sumNums = (arr)=>{
 
     for (i = 0; i < arr.length; i++) {
 
-        let an = arr[i];
-
-
-        if (!isNaN(an)){
-           an ="0";
-
-        }
+       
+        if (typeof arr[i] == `number`){
            
-        else {
-     
-            sum += an;
+            sum += arr[i];
 
         }
 
