@@ -85,30 +85,6 @@ const objLat = (obj) => {
 // ------------------------
 const cvFormatter = (arr) => {
 
-    // write your code here
-};
-
-// 3) ---------------------
-//
-//  Rekey wants to get statistic about the applicants
-//  using the array of object you will be getting, return an object that has the following properties
-//
-// let result = {
-//     python_Devs: 0,
-//     javaScript_Devs: 0,
-//     dotNet_Devs: 0,
-//     java_Devs: 0,
-//     totalApplicants: 0,
-//     rejectedApplicants: 0,
-// }
-//
-// and fill it up based on the results
-
-//  Note that:
-//  1- rejectedApplicants are applications that has both the names empty or null and whoever have one year or less of Experience
-
-// ------------------------
-const applicationsStatics = (arr) => {
     let oneArr = [];
 
     for (let i = 0; i < arr.length; i++) {
@@ -136,6 +112,28 @@ const applicationsStatics = (arr) => {
     return oneArr;
 
 };
+
+// 3) ---------------------
+//
+//  Rekey wants to get statistic about the applicants
+//  using the array of object you will be getting, return an object that has the following properties
+//
+// let result = {
+//     python_Devs: 0,
+//     javaScript_Devs: 0,
+//     dotNet_Devs: 0,
+//     java_Devs: 0,
+//     totalApplicants: 0,
+//     rejectedApplicants: 0,
+// }
+//
+// and fill it up based on the results
+
+//  Note that:
+//  1- rejectedApplicants are applications that has both the names empty or null and whoever have one year or less of Experience
+
+// ------------------------
+const applicationsStatics = (arr) => {};
 
 // 4) ---------------------
 //
