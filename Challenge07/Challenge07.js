@@ -20,7 +20,9 @@
 
 const objLat = (obj) => {
 
-    return firstName[0].toUpperCase() + lastName[0].toUpperCase() + hobby[0].toUpperCase;
+    var x = obj.firstName.charAt(0).toUpperCase() + obj.firstName.slice(1);
+
+    return ("my name is " + x + " " + obj.lastName + " I am " + obj.age + " YO, and I love " + obj.hobby + ".");
 };
 
 // 2) ---------------------
@@ -85,30 +87,27 @@ const objLat = (obj) => {
 // ------------------------
 const cvFormatter = (arr) => {
 
-    let oneArr = [];
+    let oneArr = arr.filter(arr => arr.yearsOfExperience > 1);
 
-    for (let i = 0; i < arr.length; i++) {
-        var fullName;
-        if (arr[i].yearsOfExperience > 1) {
-            if (arr[i].firstName !== null && arr[i].lastName !== null)
-                fullName = arr[i].firstName + " " + arr[i].lastName;
-            if (arr[i].firstName == null) {
+    let fullName;
 
-                fullName = arr[i].lastName;
-                if (arr[i].lastName == null) {
-                    fullName = arr[i].firstName;
-                    let towArr = {
-                        fullName: " ",
-                        tech: " ",
-                    }
-                    towArr.fullName = fullName
-                    towArr.tech = arr[i].tech
-                    oneArr.push(towArr);
-
-                }
-            }
+    oneArr.forEach(element => {
+        if (element.firstName !== null && element.lastName !== null) {
+            fullName = element.firstName + " " + element.lastName;
+            element.fullName = fullName;
         }
-    }
+        if (element.firstName == null) {
+            fullName = element.lastName;
+            element.fullName = fullName;
+        }
+        if (element.lastName == null) {
+            fullName = element.firstName;
+            element.fullName = fullName;
+        }
+        delete element.yearsOfExperience;
+        delete element.firstName;
+        delete element.lastName;
+    });
     return oneArr;
 
 };
@@ -133,7 +132,53 @@ const cvFormatter = (arr) => {
 //  1- rejectedApplicants are applications that has both the names empty or null and whoever have one year or less of Experience
 
 // ------------------------
-const applicationsStatics = (arr) => {};
+const applicationsStatics = (arr) => {
+
+    let result = {
+        python_Devs: 0,
+        javaScript_Devs: 0,
+        dotNet_Devs: 0,
+        java_Devs: 0,
+        totalApplicants: 0,
+        rejectedApplicants: 0,
+    }
+
+    arr.forEach(element => {
+
+
+        if (((element.firstName == null) && (element.lastName == null)) || (element.yearsOfExperience <= 1)) {
+            result.rejectedApplicants++;
+
+        }
+
+        if (element.tech == "Python") {
+            result.python_Devs++;
+            result.totalApplicants++;
+        }
+
+        if (element.tech == "JS") {
+            result.javaScript_Devs++;
+            result.totalApplicants++;
+        }
+
+
+        if (element.tech == ".Net") {
+            result.dotNet_Devs++;
+            result.totalApplicants++;
+        }
+
+        if (element.tech == "Java") {
+            result.java_Devs++;
+            result.totalApplicants++;
+
+        }
+
+
+    });
+
+    return result;
+
+};
 
 // 4) ---------------------
 //
@@ -252,7 +297,23 @@ let data = {
 //  2- You need to round the average to the nearest lower number 
 
 const classesAvg = (data) => {
-    // write your code here
+    function Average(classScores) {
+        var total = 0;
+        for (var i = 0; i < classScores.length; i++) {
+            total += arr[i];
+        }
+        var avg = Math.floor(total / classScores.length);
+        return avg;
+
+    }
+
+
+    for (let x = 0; x < data.grades.length; x++) {
+        for (let y = 0; y < data.grades[x].length; y++) {
+
+            data.grades[x].classes[y].avg = Average(classScores);
+        }
+    }
 };
 
 module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };
