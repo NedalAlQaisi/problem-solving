@@ -27,9 +27,13 @@
 // -------------------------------------------------------------------------------------------------------
 
 const customerAndAge = (obj) => {
-    for (const formats in obj) {
-        console.log(`Customer Name :${formats} , Age :${obj[formats]}`);
+
+    let customerList = []
+
+    for (let formats in obj) {
+        customerList.push(`Customer Name :${formats} , Age :${obj[formats]}`);
     }
+    return customerList
 };
 
 // -------------------------------------------------------------------------------------------------------
@@ -56,9 +60,15 @@ const customerAndAge = (obj) => {
 // -------------------------------------------------------------------------------------------------------
 
 const getEntries = (obj) => {
-    for (const [key, value] of Object.entries(obj)) {
-        console.log(`${key}: ${value}`);
+
+    let foodMenu = []
+
+    for (let [key, value] of Object.entries(obj)) {
+
+        foodMenu.push(`${key}: ${value}`);
     }
+
+    return foodMenu
 };
 
 // -------------------------------------------------------------------------------------------------------
@@ -96,9 +106,18 @@ const courses = [{
 ];
 
 const getInfo = (arr) => {
-    let coursesName = [];
-    let studentsName = [];
-    // write your code here
+    let coursesName = []
+    let studentsName = []
+
+    arr.forEach(name => {
+        coursesName.push(name.course)
+
+        for (let i = 0; i < name.Students.length; i++) {
+
+            studentsName.push(name.Students[i])
+
+        }
+    });
 
     return { coursesName, studentsName };
 };
@@ -122,8 +141,31 @@ const getInfo = (arr) => {
 //  ------------------------------------------------------------------------------------------------------
 
 const getStudents = (arr) => {
-    // write your code here
 
+    let info = []
+
+    for (let i = 0; i < arr.length; i++) {
+
+        var obj = {
+            Student: " ",
+            course: " ",
+        }
+
+        courses.forEach(perCourse => {
+
+            perCourse.Students.forEach(has => {
+
+                if (has == arr[i]) {
+                    obj.Student = arr[i];
+                    obj.course = perCourse.course;
+
+                    info.push(obj);
+                }
+            });
+        });
+    }
+
+    return info;
 };
 
 module.exports = {
